@@ -1,0 +1,1276 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GEEKYTECH</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;800&family=Inter:wght@400;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="global.css">
+  <link rel="stylesheet" href="estilos.css">
+  <script src="global.js" defer></script>
+</head>
+
+<body>
+  <section id="section-header" class="site-header-wrapper">
+    <div class="container">
+      <header class="site-header">
+        <div class="header-top-row">
+          <a href="#" class="logo">
+            <img id="logo-geeky" src="images/LOGO.png" alt="GEEKYTECH Logo">
+            <style>
+              #logo-geeky {
+                width: 10rem;
+                height: 6rem;
+
+              }
+            </style>
+          </a>
+          <nav class="header-nav">
+            <a href="#" id="loginBtn" class="nav-item">
+              <img src="images/1_5.svg" alt="Account Icon" class="nav-icon">
+              <div class="nav-text">
+                <span class="text-style-roboto-10-400">Minha conta</span>
+                <strong class="text-style-roboto-13-700">Entrar / Cadastro</strong>
+              </div>
+            </a>
+            <!--Aqui é um modal, para o login do botão Entrar/Cadastro ->-->
+            <!-- Modal de Autenticação -->
+            <div id="auth-modal" class="auth-modal hidden">
+              <div class="auth-modal-content">
+                <span class="close-btn" onclick="fecharModal()">&times;</span>
+                <h2>Login ou Cadastro</h2>
+                <div id="mensagem" class="mensagem oculto"></div>
+
+                <input type="email" id="email" placeholder="Email">
+                <input type="password" id="senha" placeholder="Senha">
+
+                <button onclick="fazerLogin()">Entrar</button>
+                <button onclick="cadastrar()">Cadastrar</button>
+                <hr>
+                <button class="google-btn" onclick="loginComGoogle()">Entrar com Google</button>
+              </div>
+            </div>
+
+
+            <style>
+              /* Modal Container */
+              .auth-modal {
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: rgba(0, 0, 0, 0.6);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                z-index: 1000;
+                animation: fadeIn 0.3s ease forwards;
+              }
+
+              /* Modal Box */
+              .auth-modal-content {
+                background-color: #1e1e1e;
+                color: white;
+                padding: 2rem;
+                border-radius: 12px;
+                width: 320px;
+                max-width: 90%;
+                animation: slideIn 0.4s ease forwards;
+                position: relative;
+                box-shadow: 0 0 15px rgba(0, 0, 0, 0.534);
+              }
+
+              /* Botão de Fechar */
+              .auth-modal-content .close-btn {
+                position: absolute;
+                top: 12px;
+                right: 16px;
+                color: white;
+                font-size: 22px;
+                cursor: pointer;
+              }
+
+              /* Inputs */
+              .auth-modal-content input {
+                display: block;
+                width: 100%;
+                margin: 10px 0;
+                padding: 10px;
+                border: none;
+                border-radius: 8px;
+                background: #2c2c2c;
+                color: white;
+                font-family: 'Inter', sans-serif;
+              }
+
+              /* Botões */
+              .auth-modal-content button {
+                display: block;
+                width: 100%;
+                margin: 8px 0;
+                padding: 10px;
+                background-color: #c00000;
+                color: white;
+                border: none;
+                border-radius: 8px;
+                font-weight: bold;
+                cursor: pointer;
+                font-family: 'Inter', sans-serif;
+                transition: background 0.3s;
+              }
+
+              .auth-modal-content button:hover {
+                background-color: #8a0000;
+              }
+
+              /* Botão Google (diferente visualmente, se quiser) */
+              .auth-modal-content .google-btn {
+                background-color: #ffffff;
+                color: #000;
+              }
+
+              .auth-modal-content .google-btn:hover {
+                background-color: #dddddd;
+              }
+
+              /* Esconde o modal */
+              .hidden {
+                display: none;
+              }
+
+              /* Animações */
+              @keyframes fadeIn {
+                from {
+                  opacity: 0;
+                }
+
+                to {
+                  opacity: 1;
+                }
+              }
+
+              @keyframes slideIn {
+                from {
+                  transform: translateY(-30px);
+                  opacity: 0;
+                }
+
+                to {
+                  transform: translateY(0);
+                  opacity: 1;
+                }
+              }
+
+              .mensagem {
+                margin: 10px 0;
+                padding: 10px;
+                border-radius: 6px;
+                text-align: center;
+                font-weight: bold;
+                font-family: 'Inter', sans-serif;
+              }
+
+              .mensagem.sucesso {
+                background-color: #004d00;
+                color: #b5f9b5;
+              }
+
+              .mensagem.erro {
+                background-color: #550000;
+                color: #f9b5b5;
+              }
+
+              .oculto {
+                display: none;
+              }
+            </style>
+
+
+            <!--Fim do Modal-->
+
+              <a href="index.html" class="nav-item">
+              <img src="images/1_898.svg" alt="Home Icon" class="nav-icon">
+              <div class="nav-text">
+                <strong class="text-style-roboto-13-700">Home</strong>
+              </div>
+            </a>
+
+          </nav>
+          <a href="#" class="cart-button">
+            <img src="images/1_26.svg" alt="Cart Icon" class="cart-icon-left">
+            <div class="cart-text">
+              <strong class="text-style-inter-18-700">Carrinho</strong>
+              <span class="text-style-inter-11-400">0 itens</span>
+            </div>
+            <img src="images/1_30.svg" alt="Cart Arrow Icon" class="cart-icon-right">
+          </a>
+
+          <!--Carrinho - códigos que fazem ele funcionar aqui:-->
+          <!-- Modal Carrinho, igual na SideBar e no Login. Evita poluir criando outra página -->
+          <div id="cart-modal" class="auth-modal hidden">
+            <div class="auth-modal-content">
+              <span class="close-btn" onclick="fecharCarrinho()">&times;</span>
+              <h2>Seu Carrinho</h2>
+              <div id="cart-items" style="margin-top: 1rem;"></div>
+              <button class="comprar-btn">Comprar (Simulação)</button>
+              <button class="limpar-btn" onclick="limparCarrinho()">Limpar Carrinho</button>
+              <div id="compra-msg" class="mensagem oculto"></div>
+            </div>
+          </div>
+
+          <style>
+            #cart-items {
+              max-height: 300px;
+              /* você pode ajustar essa altura */
+              overflow-y: auto;
+              margin-top: 1rem;
+              padding-right: 10px;
+            }
+
+            /* Scroll mais bonito no Chrome e derivados */
+            #cart-items::-webkit-scrollbar {
+              width: 6px;
+            }
+
+            #cart-items::-webkit-scrollbar-thumb {
+              background-color: #888;
+              border-radius: 4px;
+            }
+
+            #cart-items::-webkit-scrollbar-thumb:hover {
+              background-color: #555;
+            }
+
+            .auth-modal-content {
+              max-height: 90vh;
+              overflow-y: auto;
+            }
+
+            .comprar-btn {
+              margin-top: 1rem;
+              background-color: #c00000;
+              color: white;
+              border: none;
+              border-radius: 8px;
+              padding: 12px;
+              font-weight: bold;
+              font-family: 'Inter', sans-serif;
+              cursor: pointer;
+              transition: background 0.3s;
+            }
+
+            .comprar-btn:hover {
+              background-color: #8a0000;
+            }
+
+            #compra-msg {
+              margin-top: 1rem;
+              padding: 12px;
+              background-color: #1d4f2f;
+              color: #c6f6d5;
+              border-radius: 8px;
+              font-weight: bold;
+              font-family: 'Inter', sans-serif;
+              text-align: center;
+              opacity: 0;
+              transform: translateY(10px);
+              transition: opacity 0.4s ease, transform 0.4s ease;
+            }
+
+            #compra-msg.ativo {
+              opacity: 1;
+              transform: translateY(0);
+            }
+
+            .limpar-btn {
+              margin-top: 0.5rem;
+              background-color: #333;
+              color: white;
+              border: none;
+              border-radius: 8px;
+              padding: 10px;
+              font-weight: bold;
+              font-family: 'Inter', sans-serif;
+              cursor: pointer;
+              transition: background 0.3s;
+            }
+
+            .limpar-btn:hover {
+              background-color: #555;
+            }
+          </style>
+
+        </div>
+        <div class="header-bottom-row">
+          <button type="button" class="departments-button">
+            <img src="images/1_34.svg" alt="Departments Icon" class="departments-icon">
+            <div class="departments-text">
+              <span class="text-style-inter-13-400">Acesse todos os</span>
+              <strong class="text-style-inter-21-700">Departamentos</strong>
+            </div>
+            <img src="images/1_38.svg" alt="Dropdown Icon" class="departments-arrow">
+          </button>
+
+          <!-- Overlay (escurece o fundo) -->
+          <div id="overlay" class="overlay hidden"></div>
+
+          <!-- Sidebar -->
+          <div id="sidebar" class="sidebar hidden">
+            <div class="sidebar-header">
+              <img src="images/logo.png" alt="Logo" class="sidebar-logo" />
+              <button id="closeSidebar" class="close-button">×</button>
+            </div>
+            <ul class="sidebar-menu">
+              <li><a href="computadores.html">Computadores</a></li>
+              <li><a href="perifericos.html">Periféricos</a></li>
+            </ul>
+          </div>
+          <!-- Estilos da Sidebar -->
+          <style>
+            .sidebar {
+              position: fixed;
+              top: 0;
+              left: 0;
+              height: 100%;
+              width: 260px;
+              background-color: #1c1c1e;
+              box-shadow: 2px 0 8px rgba(0, 0, 0, 0.4);
+              padding: 24px;
+              transform: translateX(-100%);
+              opacity: 0;
+              visibility: hidden;
+              transition: transform 0.4s ease, opacity 0.4s ease, visibility 0.4s;
+              z-index: 1000;
+              font-family: 'Inter', sans-serif;
+              color: #f1f1f1;
+            }
+
+            .sidebar.show {
+              transform: translateX(0);
+              opacity: 1;
+              visibility: visible;
+            }
+
+            .overlay {
+              position: fixed;
+              top: 0;
+              left: 0;
+              width: 100%;
+              height: 100%;
+              background: rgba(0, 0, 0, 0.5);
+              opacity: 0;
+              visibility: hidden;
+              transition: opacity 0.3s ease, visibility 0.3s;
+              z-index: 900;
+            }
+
+            .overlay.show {
+              opacity: 1;
+              visibility: visible;
+            }
+
+            /* Sidebar Header */
+            .sidebar-header {
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+              margin-bottom: 40px;
+            }
+
+            /* Logo */
+            .sidebar-logo {
+              width: 140px;
+            }
+
+            /* Fechar */
+            .close-button {
+              background: transparent;
+              border: none;
+              font-size: 28px;
+              color: #f1f1f1;
+              cursor: pointer;
+            }
+
+            /* Menu */
+            .sidebar-menu {
+              list-style: none;
+              padding: 0;
+            }
+
+            .sidebar-menu li {
+              margin-bottom: 2px;
+            }
+
+            .sidebar-menu a {
+              display: block;
+              background-color: #2a2a2c00;
+              /* base escura */
+              color: #f1f1f1;
+              font-size: 15px;
+              text-decoration: none;
+              padding: 16px 18px;
+              border-radius: 1px;
+              transition: background-color 0.3s ease, color 0.3s ease;
+            }
+
+            /* Hover: fundo vermelho e texto branco */
+            .sidebar-menu a:hover {
+              background-color: #b40300;
+              color: #ffffff;
+            }
+
+
+            .overlay {
+              position: fixed;
+              top: 0;
+              left: 0;
+              width: 100%;
+              height: 100%;
+              background: rgba(0, 0, 0, 0.5);
+              opacity: 0;
+              visibility: hidden;
+              transition: opacity 0.3s ease;
+              z-index: 900;
+            }
+
+            .overlay.show {
+              opacity: 1;
+              visibility: visible;
+            }
+
+
+            /* Botão de fechar */
+            .close-button {
+              background: transparent;
+              border: none;
+              font-size: 24px;
+              cursor: pointer;
+              position: absolute;
+              top: 15px;
+              right: 15px;
+            }
+          </style>
+          <div class="search-area">
+            <input type="text" placeholder="Digite o que você procura..." class="search-input">
+            <ul class="search-dropdown oculto" id="search-dropdown"></ul>
+            <div class="search-suggestions">
+              <button type="button" class="suggestion-button text-style-roboto-13-400">Mouse</button>
+              <button type="button" class="suggestion-button text-style-roboto-13-400">Teclado</button>
+              <button type="button" class="suggestion-button text-style-roboto-13-400">Headset</button>
+            </div>
+          </div>
+        </div>
+      </header>
+    </div>
+  </section>
+  <section id="section-hero-banner" class="hero-banner-section">
+    <div class="container">
+      <a href="#" class="hero-banner-link">
+        <img src="images/banner.jpg" alt="Promoção Pichau">
+      </a>
+    </div>
+  </section>
+  <section id="section-promo-banner-love-pc" class="promo-banner-single">
+    <div class="container">
+      <a href="#">
+        <img src="images/banner2.png" alt="Love PC Gamer Banner">
+      </a>
+    </div>
+  </section>
+  <section id="section-promo-banners-intel-logitech" class="promo-banners-double">
+    <div class="container">
+      <div class="promo-banners-grid">
+        <a href="#" class="promo-banner-half">
+          <img src="images/4b4f993270b5255267d463b73a61f84089362c22.png" alt="Intel Banner">
+        </a>
+        <a href="#" class="promo-banner-half">
+          <img src="images/a48c8ab6f4305c6e4942276e8e699d0c034d8d76.png" alt="Logitech Banner">
+        </a>
+      </div>
+    </div>
+  </section>
+  <section id="section-promo-banner-empresas" class="promo-banner-single">
+    <div class="container">
+      <a href="#">
+        <img src="images/banner3.png" alt="Outro Banner">
+      </a>
+    </div>
+  </section>
+  <section id="section-category-links" class="category-links-section">
+    <div class="container">
+      <ul class="category-links-list">
+        <li class="category-item item-gamer">
+          <a href="#">
+            <div class="category-image-bg">
+              <img src="images/Game.png" alt="Gamer Icon" class="category-icon">
+            </div>
+            <div class="category-text">
+              <strong class="text-style-roboto-20-700-center">Gamer</strong>
+              <span class="text-style-roboto-12-400-center">O PC perfeito para<br>jogar</span>
+            </div>
+          </a>
+        </li>
+        <li class="category-item item-workstation">
+          <a href="#">
+            <div class="category-image-bg">
+              <img src="images/work.png" alt="Workstation Icon"
+                class="category-icon">
+            </div>
+            <div class="category-text">
+              <strong class="text-style-roboto-20-700-center">Work<br>Station</strong>
+              <span class="text-style-roboto-12-400-center">Para modelagem e<br>renderização</span>
+            </div>
+          </a>
+        </li>
+        <li class="category-item item-home">
+          <a href="#">
+            <div class="category-image-bg">
+              <img src="images/home.png" alt="Home Icon" class="category-icon">
+            </div>
+            <div class="category-text">
+              <strong class="text-style-roboto-20-700-center">Home</strong>
+              <span class="text-style-roboto-12-400-center">Para casa ou<br>escritório</span>
+            </div>
+          </a>
+        </li>
+        <li class="category-item item-monte">
+          <a href="#">
+            <div class="category-image-bg">
+              <img src="images/monte.webp" alt="Monte PC Icon" class="category-icon">
+            </div>
+            <div class="category-text">
+              <strong class="text-style-roboto-20-700-center">Monte</strong>
+              <span class="text-style-roboto-12-400-center">Seu PC</span>
+            </div>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </section>
+  <section id="section-new-products" class="product-section">
+    <div class="container">
+      <h2 class="section-title">
+        <img src="images/1_92.svg" alt="" class="title-icon">
+        <span class="text-style-roboto-22-400">PRODUTOS NOVOS E LANÇAMENTOS</span>
+      </h2>
+      <div class="product-grid">
+        <!-- PRODUTOS -->
+
+        <style>
+          .add-to-cart-btn,
+          .Mandar-Carrinho {
+            margin-top: 10px;
+            background-color: #e90313;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            font-family: 'Inter', sans-serif;
+          }
+
+          .add-to-cart-btn,
+          .Mandar-Carrinho {
+            background-color: #b4020f;
+          }
+        </style>
+
+        <div class="product-card">
+          <a href="#">
+            <div class="product-image-container">
+              <img src="perifericos/mouse.png"
+                alt="Mouse Gamer Redragon Cobra, Chroma RGB, 10000DPI, 7 Botões, Preto - M711" class="product-image">
+              <div class="product-badges">
+                <span class="badge discount-badge">
+                  <span class="text-style-badge-discount">37%</span>
+                  <small class="text-style-badge-label">OFF</small>
+                </span>
+                <span class="badge stock-badge">
+                  <small class="text-style-badge-label">EM</small>
+                  <small class="text-style-badge-label">ESTOQUE</small>
+                </span>
+              </div>
+            </div>
+            <h3 class="product-name text-style-product-title">Mouse Gamer Redragon Cobra, Chroma RGB, 10000DPI, 7
+              Botões, Preto - M711</h3>
+            <p class="product-price-original text-style-price-original">
+              de <span class="text-style-price-original-strikethrough">R$ 211,75</span> por:
+            </p>
+            <p class="product-price-avista text-style-price-avista">à vista</p>
+            <p class="product-price-main text-style-price-main">R$ 149,99</p>
+            <p class="product-price-discount text-style-roboto-10-400">no PIX com 15% desconto</p>
+            <hr class="product-divider">
+            <p class="product-price-installment text-style-price-installment">
+              em até 10x de<span class="text-style-price-installment-highlight"> R$ 14,49</span>
+            </p>
+            <p class="product-price-installment-details text-style-price-installment">sem juros no cartão</p>
+            <div class="product-actions" style="margin-top: 10px; display: flex; flex-direction: column; gap: 8px;">
+              <button class="add-to-cart-btn">Adicionar ao Carrinho</button>
+              <button class="comprar-btn produto-comprar">Comprar Agora (Simulação)</button>
+            </div>
+          </a>
+
+        </div>
+
+        <div class="product-card">
+          <a href="#">
+            <div class="product-image-container">
+              <img src="perifericos/Fone.png"
+                alt="Headset Gamer Sem Fio Astro A50 + Base Station Gen 4 com Áudio Dolby Atmos para Xbox Series, Xbox One, PC, Mac - Preto - 939-001681"
+                class="product-image">
+              <div class="product-badges">
+                <span class="badge discount-badge">
+                  <span class="text-style-badge-discount">37%</span>
+                  <small class="text-style-badge-label">OFF</small>
+                </span>
+                <span class="badge stock-badge">
+                  <small class="text-style-badge-label">EM</small>
+                  <small class="text-style-badge-label">ESTOQUE</small>
+                </span>
+              </div>
+            </div>
+            <h3 class="product-name text-style-product-title">Headset Gamer Sem Fio Astro A50 + Base Station Gen 4 com
+              Áudio Dolby Atmos para Xbox Series, Xbox One, PC, Mac - Preto - 939-001681
+            </h3>
+            <p class="product-price-original text-style-price-original">
+              de <span class="text-style-price-original-strikethrough">R$ 250,75</span> por:
+            </p>
+            <p class="product-price-avista text-style-price-avista">à vista</p>
+            <p class="product-price-main text-style-price-main">R$ 211,20</p>
+            <p class="product-price-discount text-style-roboto-10-400">no PIX com 15% desconto</p>
+            <hr class="product-divider">
+            <p class="product-price-installment text-style-price-installment">
+              em até 10x de<span class="text-style-price-installment-highlight"> R$ 21,02</span>
+            </p>
+            <p class="product-price-installment-details text-style-price-installment">sem juros no cartão</p>
+          <div class="product-actions" style="margin-top: 10px; display: flex; flex-direction: column; gap: 8px;">
+            <button class="add-to-cart-btn">Adicionar ao Carrinho</button>
+            <button class="comprar-btn produto-comprar">Comprar Agora (Simulação)</button>
+          </div>
+          </a>
+        </div>
+
+        <div class="product-card">
+          <a href="#">
+            <div class="product-image-container">
+              <img src="perifericos/caixinhas.png" alt="Caixa De Som Para Computador PC Gamer Com Fio LED RGB"
+                class="product-image">
+              <div class="product-badges">
+                <span class="badge discount-badge">
+                  <span class="text-style-badge-discount">37%</span>
+                  <small class="text-style-badge-label">OFF</small>
+                </span>
+                <span class="badge stock-badge">
+                  <small class="text-style-badge-label">EM</small>
+                  <small class="text-style-badge-label">ESTOQUE</small>
+                </span>
+              </div>
+            </div>
+            <h3 class="product-name text-style-product-title">Caixa De Som Para Computador PC Gamer Com Fio LED RGB</h3>
+            <p class="product-price-original text-style-price-original">
+              de <span class="text-style-price-original-strikethrough">R$ 89,99</span> por:
+            </p>
+            <p class="product-price-avista text-style-price-avista">à vista</p>
+            <p class="product-price-main text-style-price-main">R$ 49,99</p>
+            <p class="product-price-discount text-style-roboto-10-400">no PIX com 15% desconto</p>
+            <hr class="product-divider">
+            <p class="product-price-installment text-style-price-installment">
+              em até 2x de<span class="text-style-price-installment-highlight"> R$ 30,31</span>
+            </p>
+            <p class="product-price-installment-details text-style-price-installment">sem juros no cartão</p>
+          <div class="product-actions" style="margin-top: 10px; display: flex; flex-direction: column; gap: 8px;">
+            <button class="add-to-cart-btn">Adicionar ao Carrinho</button>
+            <button class="comprar-btn produto-comprar">Comprar Agora (Simulação)</button>
+          </div>
+          </a>
+          
+        </div>
+
+        <div class="product-card">
+          <a href="#">
+            <div class="product-image-container">
+              <img src="perifericos/teclado.png"
+                alt="Teclado Gamer HyperX Teclado Alloy Core RGB BR Layout - 4P4F5A2#AC4" class="product-image">
+              <div class="product-badges">
+                <span class="badge discount-badge">
+                  <span class="text-style-badge-discount">37%</span>
+                  <small class="text-style-badge-label">OFF</small>
+                </span>
+                <span class="badge stock-badge">
+                  <small class="text-style-badge-label">EM</small>
+                  <small class="text-style-badge-label">ESTOQUE</small>
+                </span>
+              </div>
+            </div>
+            <h3 class="product-name text-style-product-title">Teclado Gamer HyperX Teclado Alloy Core RGB BR Layout -
+              4P4F5A2#AC4</h3>
+            <p class="product-price-original text-style-price-original">
+              de <span class="text-style-price-original-strikethrough">R$ 288,88</span> por:
+            </p>
+            <p class="product-price-avista text-style-price-avista">à vista</p>
+            <p class="product-price-main text-style-price-main">R$ 196,99</p>
+            <p class="product-price-discount text-style-roboto-10-400">no PIX com 15% desconto</p>
+            <hr class="product-divider">
+            <p class="product-price-installment text-style-price-installment">
+              em até 8x de<span class="text-style-price-installment-highlight"> R$ 27,36 </span>
+            </p>
+            <p class="product-price-installment-details text-style-price-installment">sem juros no cartão</p>
+          <div class="product-actions" style="margin-top: 10px; display: flex; flex-direction: column; gap: 8px;">
+            <button class="add-to-cart-btn">Adicionar ao Carrinho</button>
+            <button class="comprar-btn produto-comprar">Comprar Agora (Simulação)</button>
+          </div>
+          </a>          
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="section-featured-products" class="product-section">
+    <div class="container">
+      <h2 class="section-title">
+        <img src="images/1_175.svg" alt="" class="title-icon">
+        <span class="text-style-roboto-22-400">OFERTAS EM DESTAQUE</span>
+      </h2>
+      <div class="product-grid">
+
+        <div class="product-card">
+          <a href="#">
+            <div class="product-image-container">
+              <img src="perifericos/pendrive.png" alt="Pen Drive 64GB Kingston DataTraveler Exodia Onyx, USB 3.2, Preto - DTXON/64GB"
+                class="product-image">
+              <div class="product-badges">
+                <span class="badge discount-badge">
+                  <span class="text-style-badge-discount">37%</span>
+                  <small class="text-style-badge-label">OFF</small>
+                </span>
+                <span class="badge stock-badge">
+                  <small class="text-style-badge-label">EM</small>
+                  <small class="text-style-badge-label">ESTOQUE</small>
+                </span>
+              </div>
+            </div>
+            <h3 class="product-name text-style-product-title">Pen Drive 64GB Kingston DataTraveler Exodia Onyx, USB 3.2, Preto - DTXON/64GB</h3>
+            <p class="product-price-original text-style-price-original">
+              de <span class="text-style-price-original-strikethrough">R$ 99,99</span> por:
+            </p>
+            <p class="product-price-avista text-style-price-avista">à vista</p>
+            <p class="product-price-main text-style-price-main">R$ 59,99</p>
+            <p class="product-price-discount text-style-roboto-10-400">no PIX com 15% desconto</p>
+            <hr class="product-divider">
+            <p class="product-price-installment text-style-price-installment">
+              em até 2x de<span class="text-style-price-installment-highlight"> R$ 30,31</span>
+            </p>
+            <p class="product-price-installment-details text-style-price-installment">sem juros no cartão</p>
+          <div class="product-actions" style="margin-top: 10px; display: flex; flex-direction: column; gap: 8px;">
+            <button class="add-to-cart-btn">Adicionar ao Carrinho</button>
+            <button class="comprar-btn produto-comprar">Comprar Agora (Simulação)</button>
+          </div>
+          </a>
+        </div>
+
+        <div class="product-card">
+          <a href="#">
+            <div class="product-image-container">
+              <img src="perifericos/mousepad.png" alt="Mousepad Gamer Rise Mode RGB, Estendido (900x300mm), Preto - RM-MP-07-RGB"
+                class="product-image">
+              <div class="product-badges">
+                <span class="badge discount-badge">
+                  <span class="text-style-badge-discount">37%</span>
+                  <small class="text-style-badge-label">OFF</small>
+                </span>
+                <span class="badge stock-badge">
+                  <small class="text-style-badge-label">EM</small>
+                  <small class="text-style-badge-label">ESTOQUE</small>
+                </span>
+              </div>
+            </div>
+            <h3 class="product-name text-style-product-title">Mousepad Gamer Rise Mode RGB, Estendido (900x300mm), Preto - RM-MP-07-RGB</h3>
+            <p class="product-price-original text-style-price-original">
+              de <span class="text-style-price-original-strikethrough">R$ 82,34</span> por:
+            </p>
+            <p class="product-price-avista text-style-price-avista">à vista</p>
+            <p class="product-price-main text-style-price-main">R$ 44,99</p>
+            <p class="product-price-discount text-style-roboto-10-400">no PIX com 15% desconto</p>
+            <hr class="product-divider">
+            <p class="product-price-installment text-style-price-installment">
+              em até 2x de<span class="text-style-price-installment-highlight"> R$ 30</span>
+            </p>
+            <p class="product-price-installment-details text-style-price-installment">sem juros no cartão</p>
+           <div class="product-actions" style="margin-top: 10px; display: flex; flex-direction: column; gap: 8px;">
+            <button class="add-to-cart-btn">Adicionar ao Carrinho</button>
+            <button class="comprar-btn produto-comprar">Comprar Agora (Simulação)</button>
+          </div>
+          </a>         
+        </div>
+
+        <div class="product-card">
+          <a href="#">
+            <div class="product-image-container">
+              <img src="perifericos/gabinete.png" alt="Gabinete Gamer Rise Mode Galaxy Glass, Mid Tower, ATX, Lateral e Frontal em Vidro Temperado, Preto - RM-GA-GG-FB"
+                class="product-image">
+              <div class="product-badges">
+                <span class="badge discount-badge">
+                  <span class="text-style-badge-discount">37%</span>
+                  <small class="text-style-badge-label">OFF</small>
+                </span>
+                <span class="badge stock-badge">
+                  <small class="text-style-badge-label">EM</small>
+                  <small class="text-style-badge-label">ESTOQUE</small>
+                </span>
+              </div>
+            </div>
+            <h3 class="product-name text-style-product-title">Gabinete Gamer Rise Mode Galaxy Glass, Mid Tower, ATX, Lateral e Frontal em Vidro Temperado, Preto - RM-GA-GG-FB</h3>
+            <p class="product-price-original text-style-price-original">
+              de <span class="text-style-price-original-strikethrough">R$ 758,99</span> por:
+            </p>
+            <p class="product-price-avista text-style-price-avista">à vista</p>
+            <p class="product-price-main text-style-price-main">R$ 589,99</p>
+            <p class="product-price-discount text-style-roboto-10-400">no PIX com 15% desconto</p>
+            <hr class="product-divider">
+            <p class="product-price-installment text-style-price-installment">
+              em até 6x de<span class="text-style-price-installment-highlight"> R$ 85,99</span>
+            </p>
+            <p class="product-price-installment-details text-style-price-installment">sem juros no cartão</p>
+          <div class="product-actions" style="margin-top: 10px; display: flex; flex-direction: column; gap: 8px;">
+            <button class="add-to-cart-btn">Adicionar ao Carrinho</button>
+            <button class="comprar-btn produto-comprar">Comprar Agora (Simulação)</button>
+          </div>
+          </a>          
+        </div>
+
+        <div class="product-card">
+          <a href="#">
+            <div class="product-image-container">
+              <img src="perifericos/webcam.png" alt="Webcam HD Logitech C270, 720p, 30 FPS, Microfone Integrado, USB 2.0 - 960-000694"
+                class="product-image">
+              <div class="product-badges">
+                <span class="badge discount-badge">
+                  <span class="text-style-badge-discount">37%</span>
+                  <small class="text-style-badge-label">OFF</small>
+                </span>
+                <span class="badge stock-badge">
+                  <small class="text-style-badge-label">EM</small>
+                  <small class="text-style-badge-label">ESTOQUE</small>
+                </span>
+              </div>
+            </div>
+            <h3 class="product-name text-style-product-title">Webcam HD Logitech C270, 720p, 30 FPS, Microfone Integrado, USB 2.0 - 960-000694</h3>
+            <p class="product-price-original text-style-price-original">
+              de <span class="text-style-price-original-strikethrough">R$ 239,12</span> por:
+            </p>
+            <p class="product-price-avista text-style-price-avista">à vista</p>
+            <p class="product-price-main text-style-price-main">R$ 189,99</p>
+            <p class="product-price-discount text-style-roboto-10-400">no PIX com 15% desconto</p>
+            <hr class="product-divider">
+            <p class="product-price-installment text-style-price-installment">
+              em até 8x de<span class="text-style-price-installment-highlight"> R$ 25,81</span>
+            </p>
+            <p class="product-price-installment-details text-style-price-installment">sem juros no cartão</p>
+          <div class="product-actions" style="margin-top: 10px; display: flex; flex-direction: column; gap: 8px;">
+            <button class="add-to-cart-btn">Adicionar ao Carrinho</button>
+            <button class="comprar-btn produto-comprar">Comprar Agora (Simulação)</button>
+          </div>
+          </a>          
+        </div>
+
+      </div>
+    </div>
+
+  </section>
+  <section id="section-gigabyte-promo-slider" class="promo-banner-single">
+    <div class="container">
+      <a href="#">
+        <img src="images/8b79a2ad94ada2ae21cf3493aa2c74771c2720a6.png" alt="Gigabyte AMD Radeon Promo">
+      </a>
+    </div>
+  </section>
+
+  <footer id="section-footer-main" class="site-footer">
+
+    <div class="footer-contact-banner">
+      <div class="container footer-contact-banner-grid">
+        <div class="contact-block">
+          <img src="images/1_885.svg" alt="Atendimento Icon" class="contact-icon">
+          <div class="contact-details">
+            <p class="text-style-footer-contact-main">Atendimento Virtual</p>
+            <p class="text-style-footer-contact-main"><span class="text-style-footer-contact-secondary">Meramente Ilustrativo</span> 0h <span class="text-style-footer-contact-secondary">e das</span> 0h às 0h</p>
+          </div>
+        </div>
+        <div class="contact-block">
+          <img src="images/1_889.svg" alt="Telefone Icon" class="contact-icon">
+          <p class="text-style-footer-contact-main">(88) 90000.0000</p>
+        </div>
+        <div class="contact-block">
+          <img src="images/1_893.svg" alt="Email Icon" class="contact-icon">
+          <a href="mailto:geekytech@gmail.com.br" class="text-style-footer-contact-main">geekytech@gmail.com</a>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="footer-promo-banner">
+      <div class="container">
+        <a href="#"><img id="logo-informacoes" src="images/informações.png" alt="Informações"></a>
+        <style>
+          #logo-informacoes {
+            width: 20%;
+            max-width: 200px;
+            /* Limita o tamanho em telas grandes */
+            min-width: 100px;
+            /* Garante que não fique pequeno demais */
+          }
+
+          /* Responsivo para telas menores */
+          @media (max-width: 768px) {
+            #logo-informacoes {
+              width: 40%;
+              margin: 0 auto;
+              /* Centraliza se necessário */
+            }
+          }
+
+          @media (max-width: 480px) {
+            #logo-informacoes {
+              width: 60%;
+            }
+          }
+        </style>
+      </div>
+    </div>
+
+    <style>
+      #info-footer {
+        margin-left: 3rem;
+        margin-right: 3rem;
+
+      }
+    </style>
+
+    <div id="info-footer">
+      <div class="container footer-main-content">
+        <div class="footer-column">
+          <h4 class="text-style-footer-title">Institucional</h4>
+          <hr class="footer-title-divider">
+          <ul>
+            <li><a href="#" class="text-style-footer-link">Somos GeekyTech</a></li>
+            <li><a href="#" class="text-style-footer-link">Localização: Araripe-CE</a></li>
+            <li><a href="#" class="text-style-footer-link">Escola: E.E.E.P. VALTER NUNES DE ALENCAR</a></li>
+            <li><a href="#" class="text-style-footer-link">Nosso timão: <br> Enzo Antonio <br> Kauã Pierre <br> Gabriel
+                Barbosa <br> Pedro Ruan <br> Yure Alves <br> Antônio Emanuel</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-column">
+          <h4 class="text-style-footer-title">Pagamento</h4>
+          <hr class="footer-title-divider">
+          <div class="payment-icons">
+            <img src="images/7074a102b7ed418242d620e5a6deed8e5db8452c.png" alt="Visa">
+            <img src="images/78c366926e00fb98fb901065363d9ad0276f69a5.png" alt="Mastercard">
+            <img src="images/3f11762bd64a3915a6f6ba93364f5cbea2b50a6b.png" alt="Amex">
+            <img src="images/944dc573c2337f1a56f8b61e224f7122a7439fca.png" alt="Boleto">
+            <img src="images/eb364bbf2aae4f2e9dbd1212a46e1991b46828cf.png" alt="PIX">
+            <img src="images/1_957.svg" alt="Nubank">
+          </div>
+        </div>
+        <div class="footer-column newsletter-social-apps">
+          <h4 class="text-style-footer-title">Newsletter</h4>
+          <hr class="footer-title-divider">
+          <p class="text-style-footer-contact-main">Receba ofertas exclusivas no seu e-mail</p>
+          <form class="newsletter-form">
+            <input type="email" placeholder="E-mail" class="newsletter-input">
+            <button type="submit" class="newsletter-submit"><img src="images/1_972.svg" alt="Enviar"></button>
+          </form>
+          <p class="social-title text-style-footer-link">Siga-nos nas redes socias</p>
+          <div class="social-icons">
+            <a href="#"><img src="images/1_980.svg" alt="Social Media 1"></a>
+            <a href="#"><img src="images/1_983.svg" alt="Social Media 2"></a>
+            <a href="#"><img src="images/1_986.svg" alt="Social Media 3"></a>
+            <a href="#"><img src="images/1_989.svg" alt="Social Media 4"></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    </div>
+
+    <style>
+      .footer-final p {
+        margin-left: 2rem;
+        margin-right: 2rem;
+      }
+    </style>
+    <div class="footer-final">
+      <div class="site-footer-bottom">
+        <div class="container footer-bottom-content">
+          <div class="footer-bottom-left">
+            <img src="images/LOGO.png" alt="Pichau Logo" class="footer-logo">
+            <p class="text-style-footer-copyright-title">GEEKYTECH é uma equipe que desenvolveu este website com um
+              propósito completamente educacional.</p>
+            <p class="text-style-footer-address">Rua XXX, 999 - Centro, Araripe - CE - (88) 90000.0000</p>
+            <hr class="footer-title-divider" style="width:15px; margin: 10px 0;">
+            <p class="text-style-footer-copyright-text">Este site foi desenvolvido exclusivamente para fins
+              educacionais,
+              como parte de um projeto acadêmico da equipe GEEKYTECH, da Escola Estadual de Educação Profissional Valter
+              Nunes de Alencar. Todos os produtos, preços, imagens e informações apresentados têm caráter meramente
+              ilustrativo e não correspondem a uma loja real. As imagens podem variar conforme a fonte utilizada e não
+              representam necessariamente produtos disponíveis no mercado. Não realizamos vendas ou transações
+              comerciais
+              de nenhum tipo. Este trabalho tem como objetivo apenas a simulação de um ambiente de comércio eletrônico
+              para fins de aprendizagem.</p>
+            <p class="text-style-footer-copyright-text made-with">Made with <img src="images/1_1046.svg" alt="Heart"
+                class="heart-icon"> by <a href="#" class="text-style-footer-copyright-text">GEEKYTECH</p>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </footer>
+
+  <script>
+    function abrirModal() {
+      document.getElementById('auth-modal').classList.remove('hidden');
+    }
+
+    function fecharModal() {
+      document.getElementById('auth-modal').classList.add('hidden');
+    }
+
+    // Fechar modal ao clicar fora dele
+    window.addEventListener('click', function (event) {
+      const modal = document.getElementById('auth-modal');
+      if (event.target === modal) {
+        fecharModal();
+      }
+    });
+
+  </script>
+
+  <!-- Firebase SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js"></script>
+
+  <!-- Nosso JavaScript -->
+  <script type="module" src="firebase.js"></script>
+  <script>
+
+    // Faz o botão abrir o modal
+    document.getElementById('loginBtn').addEventListener('click', function (event) {
+      event.preventDefault(); // evita que o <a href="#"> suba a página
+      abrirModal();
+    });
+  </script>
+
+  <script>
+    import { onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+    onAuthStateChanged(auth, (user) => {
+      const navItem = document.getElementById('loginBtn');
+      if (user) {
+        // Usuário está logado
+        navItem.innerHTML = `
+        <img src="images/1_5.svg" alt="Account Icon" class="nav-icon">
+        <div class="nav-text">
+          <span class="text-style-roboto-10-400">Bem-vindo</span>
+          <strong class="text-style-roboto-13-700">${user.displayName || user.email}</strong>
+        </div>
+      `;
+        navItem.href = "#";
+        navItem.onclick = (e) => {
+          e.preventDefault();
+          if (confirm("Deseja sair da conta?")) {
+            signOut(auth);
+          }
+        };
+      } else {
+        // Usuário não está logado
+        navItem.innerHTML = `
+        <img src="images/1_5.svg" alt="Account Icon" class="nav-icon">
+        <div class="nav-text">
+          <span class="text-style-roboto-10-400">Minha conta</span>
+          <strong class="text-style-roboto-13-700">Entrar / Cadastro</strong>
+        </div>
+      `;
+        navItem.href = "#";
+        navItem.onclick = (e) => {
+          e.preventDefault();
+          abrirModal();
+        };
+      }
+    });
+  </script>
+
+  <!-- Código Javascript da Sidebar -->>
+  <script>
+    const button = document.querySelector('.departments-button');
+    const sidebar = document.getElementById('sidebar');
+    const overlay = document.getElementById('overlay');
+    const closeBtn = document.getElementById('closeSidebar');
+
+    function openSidebar() {
+      sidebar.classList.add('show');
+      sidebar.classList.remove('hidden');
+      overlay.classList.add('show');
+      overlay.classList.remove('hidden');
+    }
+
+    function closeSidebar() {
+      sidebar.classList.remove('show');
+      overlay.classList.remove('show');
+
+      // Aguarda a transição para esconder
+      setTimeout(() => {
+        sidebar.classList.add('hidden');
+        overlay.classList.add('hidden');
+      }, 300); // tempo da transição
+    }
+
+    button.addEventListener('click', openSidebar);
+    closeBtn.addEventListener('click', closeSidebar);
+    overlay.addEventListener('click', closeSidebar);
+  </script>
+
+  <script>
+    function abrirModalProduto(nome, preco) {
+      document.getElementById('produto-modal-nome').textContent = nome;
+      document.getElementById('produto-modal-preco').textContent = `Preço: R$ ${preco.toFixed(2)}`;
+      document.getElementById('produto-modal').classList.remove('hidden');
+      window.produtoSelecionado = { nome, preco };
+    }
+
+    function fecharModalProduto() {
+      document.getElementById('produto-modal').classList.add('hidden');
+    }
+
+    function adicionarProdutoSelecionado() {
+      const { nome, preco } = window.produtoSelecionado;
+
+      const precoConvertido = typeof preco === "string"
+        ? parseFloat(preco.replace('R$', '').replace(/\./g, '').replace(',', '.'))
+        : preco;
+
+      if (!isNaN(precoConvertido)) {
+        adicionarAoCarrinho(nome, precoConvertido);
+        fecharModalProduto();
+      }
+    }
+
+    function simularCompraDireta() {
+      const msg = document.getElementById('compra-msg');
+      msg.textContent = "✅ Simulação de compra direta realizada!";
+      msg.classList.remove('oculto');
+      msg.classList.add('ativo');
+      fecharModalProduto();
+      setTimeout(() => {
+        msg.classList.remove('ativo');
+        msg.classList.add('oculto');
+      }, 3500);
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('.produto-modal-btn').forEach(botao => {
+        botao.addEventListener('click', () => {
+          const card = botao.closest('.product-card');
+          const nome = card.querySelector('.product-name')?.textContent.trim();
+          const precoTexto = card.querySelector('.product-price-main')?.textContent.trim();
+          const preco = parseFloat(precoTexto.replace('R$', '').replace(/\./g, '').replace(',', '.'));
+          if (!isNaN(preco)) abrirModalProduto(nome, preco);
+        });
+      });
+    });
+  </script>
+  <!--Script da barrinha de pesquisa-->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const barra = document.querySelector('.search-input');
+      const produtos = document.querySelectorAll('.product-card');
+      const dropdown = document.getElementById('search-dropdown');
+
+      // Filtro direto enquanto digita
+      barra.addEventListener('input', () => {
+        const termo = barra.value.toLowerCase();
+        dropdown.innerHTML = '';
+        let resultados = [];
+
+        produtos.forEach(produto => {
+          const nome = produto.querySelector('.product-name')?.textContent.trim();
+          const nomeLower = nome.toLowerCase();
+
+          // Mostrar/ocultar produtos
+          produto.style.display = nomeLower.includes(termo) ? 'block' : 'none';
+
+          if (nomeLower.includes(termo)) {
+            resultados.push(nome);
+          }
+        });
+
+        // Criar o dropdown
+        if (termo.length > 0 && resultados.length > 0) {
+          dropdown.classList.remove('oculto');
+          const unicos = [...new Set(resultados)];
+          unicos.slice(0, 6).forEach(nome => {
+            const item = document.createElement('li');
+            item.textContent = nome;
+
+            item.addEventListener('click', () => {
+              barra.value = nome;
+              dropdown.classList.add('oculto');
+
+              produtos.forEach(produto => {
+                const nomeProduto = produto.querySelector('.product-name')?.textContent.trim();
+                if (nomeProduto === nome) {
+                  produto.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                  produto.classList.add('destaque-temp');
+
+                  setTimeout(() => {
+                    produto.classList.remove('destaque-temp');
+                  }, 2000);
+                } else {
+                  produto.style.display = 'none';
+                }
+              });
+            });
+
+            dropdown.appendChild(item);
+          });
+        } else {
+          dropdown.classList.add('oculto');
+        }
+      });
+
+      // Ocultar dropdown ao clicar fora
+      document.addEventListener('click', (e) => {
+        if (!e.target.closest('.search-area')) {
+          dropdown.classList.add('oculto');
+        }
+      });
+
+      // Sugestões pré-definidas (botões)
+      document.querySelectorAll('.suggestion-button').forEach(botao => {
+        botao.addEventListener('click', () => {
+          const termo = botao.textContent;
+          barra.value = termo;
+          barra.dispatchEvent(new Event('input'));
+        });
+      });
+    });
+  </script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('.product-card a').forEach(link => {
+        link.addEventListener('click', e => e.preventDefault());
+      });
+    });
+  </script>
+
+</body>
+
+</html>

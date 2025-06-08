@@ -1,0 +1,256 @@
+body {
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #121212;
+  color: #ffffff;
+}
+
+.container {
+  max-width: 1349px;
+  margin: 0 auto;
+  padding: 0 20px;
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+.grid {
+  display: grid;
+  gap: 20px;
+}
+
+.flex {
+  display: flex;
+  gap: 10px;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.hidden-mobile {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .hidden-mobile {
+    display: block; 
+  }
+}
+
+.text-style-roboto-10-400 { 
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 15px;
+  color: #ffffff;
+}
+.text-style-roboto-13-700 { 
+  font-family: 'Roboto', sans-serif;
+  font-weight: 700;
+  font-size: 13px;
+  line-height: 19.5px;
+  color: #ffffff;
+}
+.text-style-roboto-12-700 { 
+  font-family: 'Roboto', sans-serif;
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 18px;
+  color: #ffffff;
+}
+.text-style-inter-18-700 { 
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 21.78px;
+  color: #ffffff;
+}
+.text-style-inter-11-400 { 
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  font-size: 11.88px;
+  line-height: 14.38px;
+  color: #ffffff;
+}
+.text-style-inter-13-400 { 
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 15.73px;
+  color: #ffffff;
+}
+.text-style-inter-21-700 { 
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 21.82px;
+  line-height: 26.41px;
+  color: #ffffff;
+}
+.text-style-roboto-16-400 { 
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 18.75px;
+  color: #ffffff;
+  opacity: 0.5; 
+}
+.text-style-roboto-13-400 { 
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 23px;
+  color: #ffffff;
+}
+.text-style-roboto-20-700-center { 
+  font-family: 'Roboto', sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 20px;
+  color: #ffffff;
+  text-align: center;
+}
+.text-style-roboto-12-400-center { 
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 18px;
+  color: #ffffff;
+  text-align: center;
+}
+.text-style-roboto-22-400 { 
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 29.35px;
+  color: #ffffff;
+}
+.text-style-product-title { 
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 22.4px;
+  color: #ffffff;
+  min-height: 67.2px;
+}
+.text-style-price-avista { 
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 15px;
+  color: #00a202;
+}
+.text-style-price-main { 
+  font-family: 'Roboto', sans-serif;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 36px;
+  color: #00a202;
+}
+.text-style-price-installment {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 18px;
+  color: #ffffff;
+}
+.text-style-price-installment-highlight { 
+  font-weight: 700;
+  color: #ff0000;
+}
+.text-style-price-original { 
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 19.5px;
+  color: #ff0000;
+}
+.text-style-price-original-strikethrough { 
+  text-decoration: line-through;
+}
+.text-style-badge-discount { 
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 14.4px;
+  color: #ffffff;
+  text-align: center;
+}
+.text-style-badge-label { 
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 12px;
+  color: #ffffff;
+  text-align: center;
+}
+.text-style-frete-gratis { 
+  font-family: 'Roboto', sans-serif;
+  font-weight: 800;
+  font-size: 11.2px;
+  line-height: 16.8px;
+  color: #ffffff;
+}
+.text-style-footer-title { 
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 21px;
+    color: #e90313;
+}
+.text-style-footer-link { 
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    color: #ffffff;
+}
+.text-style-footer-contact-main {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 24px;
+    color: #ffffff;
+}
+.text-style-footer-contact-secondary { 
+    font-weight: 400;
+}
+.text-style-footer-copyright-title {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700;
+    font-size: 15px;
+    line-height: 22.5px;
+    color: #e90313;
+}
+.text-style-footer-copyright-text { 
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-size: 13.2px;
+    line-height: 19.8px;
+    color: #868686;
+}
+.text-style-footer-address {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-size: 13.2px;
+    line-height: 19.8px;
+    color: #ffffff;
+}
